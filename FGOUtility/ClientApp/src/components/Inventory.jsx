@@ -62,7 +62,9 @@ class Inventory extends React.Component {
 
                                     return (
                                         <tr key={item.name}>
-                                            <td />
+                                            <td>
+                                                <img src={require(`../assets/${item.name}.png`)} />
+                                            </td>
                                             <td>
                                                 {item.displayName}
                                             </td>
@@ -73,6 +75,7 @@ class Inventory extends React.Component {
                                                     onChange={this.onChange}
                                                     onBlur={this.onBlur}
                                                     type="number"
+                                                    style={{ width: 100 }}
                                                 />
                                             </td>
                                         </tr>
@@ -100,7 +103,9 @@ class Inventory extends React.Component {
 
                                         return (
                                             <tr key={item.name}>
-                                                <td />
+                                                <td>
+                                                    <img src={require(`../assets/${item.name}.png`)} />
+                                                </td>
                                                 <td>
                                                     {item.displayName}
                                                 </td>
@@ -111,6 +116,7 @@ class Inventory extends React.Component {
                                                         onChange={this.onChange}
                                                         onBlur={this.onBlur}
                                                         type="number"
+                                                        style={{width: 100}}
                                                     />
                                                 </td>
                                             </tr>

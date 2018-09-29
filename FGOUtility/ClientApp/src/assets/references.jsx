@@ -4,10 +4,10 @@
     { name: "Fang", displayName: "Dragon Fang" },
     { name: "Dust", displayName: "Void's Dust" },
     { name: "Chain", displayName: "Fool's Chain" },
-    { name: "Stinger", displayName: "Stinger" },
-    { name: "Fluid", displayName: "Fluid" },
-    { name: "Stake", displayName: "Stake" },
-    { name: "Gunpowder", displayName: "Gunpowder" },
+    { name: "Stinger", displayName: "Stinger of Certain Death" },
+    { name: "Fluid", displayName: "Magical Cerebrospinal Fluid" },
+    { name: "Stake", displayName: "Iron Stake of Evening Tears" },
+    { name: "Gunpowder", displayName: "Reactive Gunpowder" },
     { name: "Seed", displayName: "Seed of Yggdrasil" },
     { name: "Lantern", displayName: "Ghost Lantern" },
     { name: "Crystal", displayName: "Octuplet Crystals" },
@@ -33,7 +33,7 @@
     { name: "Lamp", displayName: "Lamp of Evil Sealing" },
     { name: "Scarab", displayName: "Scarab of Wisdom" },
     { name: "Lanugo", displayName: "Lanugo" },
-    { name: "Cholecyst", displayName: "Cholecyst" },
+    { name: "Gallstone", displayName: "Cursed Beast Gallstone" },
     { name: "Wine", displayName: "Wine" },
 ];
 
