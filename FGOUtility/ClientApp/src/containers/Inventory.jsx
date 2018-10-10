@@ -50,13 +50,16 @@ class Inventory extends React.Component {
                             <InventoryRow
                                 inventory={inventory}
                                 items={materials}
-                                onChange={this.onChange} />
+                                onChange={this.onChange}
+                                onBlur={this.onBlur}
+                            />
                         </Col>
                         <Col xs="12" md="6">
                             <InventoryRow
                                 inventory={inventory}
                                 items={classPieces}
                                 onChange={this.onChange}
+                                onBlur={this.onBlur}
                             />
                         </Col>
                     </Row>}

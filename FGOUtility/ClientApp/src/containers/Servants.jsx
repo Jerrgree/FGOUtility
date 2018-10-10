@@ -1,8 +1,9 @@
 ﻿import * as React from 'react';
 import { actionCreators } from '../store';
 import { connect } from 'react-redux';
-import { Input, Row, Col } from 'reactstrap';
+import { Input, Row, Col, Table } from 'reactstrap';
 import { GetMaterials, GetClassPieces } from '../assets/references';
+import { Servant } from '../components';
 
 class Servants extends React.Component {
     constructor(props, context) {
@@ -31,21 +32,45 @@ class Servants extends React.Component {
         this.setState({ inventory: inventory });
     }
 
-    //changeSv = (event) => {
-    //    const field = event.target.name;
-    //    const { servants } = this.state;
-    //    servants[field] = parseInt(event.target.value);
-    //    this.setState({ servants: servants });
-    //}
+    addSv = (servant) => {
+        const { servants } = this.state;
+        servants.push(servant);
+        this.setState({ servants: servants });
+    }
+    removeSv = (index) => {
+        const { servants } = this.state;
+        servants.splice(index, 1);
+        this.setState({ servants: servants });
+    }
+    changeSv = (index) => (servant) => {
+        const { servants } = this.state;
+        servants[index] = servant;
+        this.setState({ servants: servants });
+    }
+
 
     onBlur = (event) => {
         this.props.save(this.state);
     }
 
     render() {
+        const materials = GetMaterials();
+        const classPieces = GetClassPieces();
+        const items = materials.map(x => x.name).concat(classPieces.map(x => x.name));
+        const options = materials.concat(classPieces);
+
+        const { servants, inventory } = this.props;
         return (
             <div>
-                Servants!
+                {servants.length > 0 &&
+                    servants.map(servant => {
+                        return <Servant
+                            key={servant.name}
+                            servant={servant}
+                            inventory={inventory}
+                        />
+                    })
+                }
             </div>
         )
     }

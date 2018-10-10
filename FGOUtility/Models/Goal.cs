@@ -7,7 +7,7 @@ namespace FGOUtility.Models
 {
     public class Goal
     {
-        public Dictionary<int, string> Materials { get; set; }
+        public Dictionary<string, int> Materials { get; set; }
         public string Name { get; set; }
     }
 }
