@@ -1,20 +1,26 @@
 ﻿import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { Table, Button } from 'reactstrap';
-//import Autosuggest from 'react-autosuggest';
+import { NewMaterialModal } from '../components';
 
 export class Goal extends React.Component {
     constructor(props, context) {
         super(props);
         this.state = {
-            item: props.item,
             quantity: props.quantity,
-            suggestions: []
+            showModal: false
         }
     }
 
+    toggleModal = () => {
+        this.setState({
+            showModal: !this.state.showModal
+        })
+    }
+
     render() {
-        const { goal, inventory } = this.props;
+        const { goal, inventory, items } = this.props;
+        const { quantity, showModal } = this.state;
         const materials = Object.entries(goal.materials);
         return (
             <div>
@@ -37,7 +43,7 @@ export class Goal extends React.Component {
                                         <img src={require(`../assets/${item}.png`)} alt={item} />
                                     </td>
                                     <td>
-                                        {item}
+                                        {items.filter(x => x.name === item)[0].displayName}
                                     </td>
                                     <td>
                                         {needed}
@@ -58,10 +64,16 @@ export class Goal extends React.Component {
                         </Button>
                     <Button
                         color="primary"
+                        onClick={this.toggleModal}
                     >
                         Add Material
                     </Button>
                 </div>
+                <NewMaterialModal
+                    items={items}
+                    showModal={showModal}
+                    toggleModal={this.toggleModal}
+                />
             </div>
         )
     }
@@ -69,5 +81,6 @@ export class Goal extends React.Component {
 
 Goal.PropTypes = {
     goal: PropTypes.object,
-    inventory: PropTypes.object
+    inventory: PropTypes.object,
+    items: PropTypes.array
 }

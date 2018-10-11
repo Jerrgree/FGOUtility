@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { Goal } from '../components';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardBody } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardFooter, Row, Col, Input, Button } from 'reactstrap';
 
 export class Servant extends React.Component {
 
@@ -14,27 +14,45 @@ export class Servant extends React.Component {
     }
 
     render() {
-
-        const { servant, inventory } = this.props;
+        const { servant, inventory, items } = this.props;
         const goals = servant.goals;
-        return <Card>
-                <CardHeader>
-                    {servant.name}
-                </CardHeader>
-                <CardBody>
-                    {goals.length > 0 &&
-                        goals.map(goal => {
-                            return (
-                                <Goal
-                                    key={goal.name}
-                                    goal={goal}
-                                    inventory={inventory}
+        return <Row>
+            <Col xs="6">
+                <Card>
+                    <CardHeader>
+                        {servant.name}
+                    </CardHeader>
+                    <CardBody>
+                        {goals.length > 0 &&
+                            goals.map((goal, index) => {
+                                return (
+                                    <Goal
+                                        key={index}
+                                        goal={goal}
+                                        inventory={inventory}
+                                        items={items}
+                                    />
+                                )
+                            })
+                        }
+                    </CardBody>
+                    <CardFooter>
+                        <Row>
+                            <Col xs={12} md={8}>
+                                <Input
                                 />
-                            )
-                        })
-                    }
-                </CardBody>
-        </Card>
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <Button
+                                >
+                                    New Goal
+                        </Button>
+                            </Col>
+                        </Row>
+                    </CardFooter>
+                </Card>
+            </Col>
+        </Row>
     }
 }
 
@@ -42,4 +60,5 @@ Servant.PropTypes = {
     servant: PropTypes.obj,
     inventory: PropTypes.object,
     options: PropTypes.array.isRequired,
+    items: PropTypes.array
 }

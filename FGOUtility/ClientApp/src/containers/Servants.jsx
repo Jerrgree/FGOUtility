@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import { actionCreators } from '../store';
 import { connect } from 'react-redux';
-import { Input, Row, Col, Table } from 'reactstrap';
-import { GetMaterials, GetClassPieces } from '../assets/references';
+import { Row, Col } from 'reactstrap';
+import { GetMaterials, GetClassPieces } from '../data/references';
 import { Servant } from '../components';
 
 class Servants extends React.Component {
@@ -56,18 +56,19 @@ class Servants extends React.Component {
     render() {
         const materials = GetMaterials();
         const classPieces = GetClassPieces();
-        const items = materials.map(x => x.name).concat(classPieces.map(x => x.name));
+        //const items = materials.map(x => x.name).concat(classPieces.map(x => x.name));
         const options = materials.concat(classPieces);
 
         const { servants, inventory } = this.props;
         return (
             <div>
                 {servants.length > 0 &&
-                    servants.map(servant => {
+                    servants.map((servant, index) => {
                         return <Servant
-                            key={servant.name}
+                            key={index}
                             servant={servant}
                             inventory={inventory}
+                            items={options}
                         />
                     })
                 }

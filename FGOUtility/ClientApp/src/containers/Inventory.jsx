@@ -2,7 +2,7 @@
 import { actionCreators } from '../store';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
-import { GetMaterials, GetClassPieces } from '../assets/references';
+import { GetMaterials, GetClassPieces } from '../data/references';
 import { InventoryRow } from '../components';
 
 class Inventory extends React.Component {
