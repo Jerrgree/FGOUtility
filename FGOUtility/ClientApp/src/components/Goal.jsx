@@ -28,6 +28,12 @@ export class Goal extends React.Component {
         }
     }
 
+    handleCompleteGoal = () => {
+        if (this.props.completeGoal) {
+            this.props.completeGoal(this.props.index);
+        }
+    }
+
     render() {
         const { goal, inventory, items } = this.props;
         const { quantity, showModal } = this.state;
@@ -60,7 +66,7 @@ export class Goal extends React.Component {
                                     </td>
                                     <td>
                                         <Input
-                                            value={inventory[item]}
+                                            value={inventory[item] || 0}
                                             name={item}
                                             type="number"
                                             onChange={this.handleInventoryChange}
@@ -74,6 +80,7 @@ export class Goal extends React.Component {
                 <div>
                     <Button
                         color="success"
+                        onClick={this.handleCompleteGoal}
                     >
                         Complete Goal
                         </Button>
@@ -101,5 +108,6 @@ Goal.PropTypes = {
     items: PropTypes.array,
     index: PropTypes.number,
     addItem: PropTypes.func,
-    changeInventory: PropTypes.func
+    changeInventory: PropTypes.func,
+    completeGoal: PropTypes.func
 }
