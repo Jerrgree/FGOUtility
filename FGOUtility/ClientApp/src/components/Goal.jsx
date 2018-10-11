@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Input } from 'reactstrap';
 import { NewMaterialModal } from '../components';
 
 export class Goal extends React.Component {
@@ -16,6 +16,16 @@ export class Goal extends React.Component {
         this.setState({
             showModal: !this.state.showModal
         })
+    }
+
+    addItem = (item, quantity) => {
+        this.props.addItem(this.props.index)(item, quantity);
+    }
+
+    handleInventoryChange = (event) => {
+        if (this.props.changeInventory) {
+            this.props.changeInventory(event.target.name, event.target.value);
+        }
     }
 
     render() {
@@ -49,7 +59,12 @@ export class Goal extends React.Component {
                                         {needed}
                                     </td>
                                     <td>
-                                        {inventory[item]}
+                                        <Input
+                                            value={inventory[item]}
+                                            name={item}
+                                            type="number"
+                                            onChange={this.handleInventoryChange}
+                                        />
                                     </td>
                                 </tr>
                             )
@@ -73,6 +88,7 @@ export class Goal extends React.Component {
                     items={items}
                     showModal={showModal}
                     toggleModal={this.toggleModal}
+                    addItem={this.addItem}
                 />
             </div>
         )
@@ -82,5 +98,8 @@ export class Goal extends React.Component {
 Goal.PropTypes = {
     goal: PropTypes.object,
     inventory: PropTypes.object,
-    items: PropTypes.array
+    items: PropTypes.array,
+    index: PropTypes.number,
+    addItem: PropTypes.func,
+    changeInventory: PropTypes.func
 }

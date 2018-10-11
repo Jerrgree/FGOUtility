@@ -3,13 +3,43 @@ import { Modal, ModalBody, ModalHeader, ModalFooter, Button, Row, Col, FormGroup
 import Autosuggest from 'react-autosuggest';
 import * as PropTypes from 'prop-types';
 
+// Start Autosuggest helpers
+function escapeRegexCharacters(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function getSuggestions(value, items) {
+    const escapedValue = escapeRegexCharacters(value.trim());
+
+    if (escapedValue === '') {
+        return [];
+    }
+
+    const regex = new RegExp('^' + escapedValue, 'i');
+
+    return items.filter(items => regex.test(items.name) || regex.test(items.displayName));
+}
+
+function getSuggestionValue(suggestion) {
+    return suggestion.name;
+}
+
+function renderSuggestion(suggestion) {
+    return (
+        <span>{suggestion.displayName}</span>
+    );
+}
+
+// End autosuggest helpers
+
 export class NewMaterialModal extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             item: "",
-            quantity: 0
+            quantity: 0,
+            suggestions: []
         };
     }
 
@@ -17,7 +47,19 @@ export class NewMaterialModal extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
+    onItemSelect = (event, { newValue, method }) => {
+        this.setState({
+            item: newValue
+        })
+    }
+
     save = () => {
+        const { item, quantity } = this.state;
+        this.props.addItem(item, quantity);
+        this.setState({
+            item: "",
+            quantity: 0
+        })
         this.props.toggleModal();
     }
 
@@ -30,9 +72,27 @@ export class NewMaterialModal extends React.Component {
         this.props.toggleModal();
     }
 
+    onSuggestionsFetchRequested = ({ value }) => {
+        this.setState({
+            suggestions: getSuggestions(value, this.props.items)
+        });
+    };
+
+    onSuggestionsClearRequested = () => {
+        this.setState({
+            suggestions: []
+        });
+    };
+
     render() {
         const { showModal } = this.props;
-        const { item, quantity } = this.state;
+        const { item, quantity, suggestions } = this.state;
+        const inputProps = {
+            value: item,
+            onChange: this.onItemSelect,
+            id: "item",
+            name: "item"
+        };
         return (
             <Modal
                 isOpen={showModal}
@@ -46,12 +106,14 @@ export class NewMaterialModal extends React.Component {
                             <Col xs={12} md={8}>
                                 <FormGroup>
                                     <Label for="item">Item</Label>
-                                    <Input
-                                        value={item}
-                                        onChange={this.onChange}
-                                        id="item"
-                                        name="item"
-                                    />
+                                    <Autosuggest
+                                        suggestions={suggestions}
+                                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                        getSuggestionValue={getSuggestionValue}
+                                        renderSuggestion={renderSuggestion}
+                                        inputProps={inputProps}
+                                        />
                                 </FormGroup>
                             </Col>
 
@@ -63,6 +125,7 @@ export class NewMaterialModal extends React.Component {
                                         onChange={this.onChange}
                                         id="quantity"
                                         name="quantity"
+                                        type="number"
                                     />
                                 </FormGroup>
                             </Col>
@@ -78,6 +141,7 @@ export class NewMaterialModal extends React.Component {
                 </Button>
                     <Button
                         color="success"
+                        onClick={this.save}
                     >
                         Save
                 </Button>
@@ -90,5 +154,6 @@ export class NewMaterialModal extends React.Component {
 NewMaterialModal.PropTypes = {
     showModal: PropTypes.bool,
     items: PropTypes.array,
-    toggleModal: PropTypes.func
+    toggleModal: PropTypes.func,
+    addItem: PropTypes.func
 }

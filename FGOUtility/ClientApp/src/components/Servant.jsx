@@ -13,6 +13,10 @@ export class Servant extends React.Component {
 
     }
 
+    addItemToGoal = (goalIndex) => (item, quantity) => {
+        this.props.addItemToGoal(this.props.index)(goalIndex)(item, quantity);
+    }
+
     render() {
         const { servant, inventory, items } = this.props;
         const goals = servant.goals;
@@ -31,6 +35,9 @@ export class Servant extends React.Component {
                                         goal={goal}
                                         inventory={inventory}
                                         items={items}
+                                        index={index}
+                                        addItem={this.addItemToGoal}
+                                        changeInventory={this.props.changeInventory}
                                     />
                                 )
                             })
@@ -60,5 +67,8 @@ Servant.PropTypes = {
     servant: PropTypes.obj,
     inventory: PropTypes.object,
     options: PropTypes.array.isRequired,
-    items: PropTypes.array
+    items: PropTypes.array,
+    index: PropTypes.number,
+    addItemToGoal: PropTypes.func,
+    changeInventory: PropTypes.func
 }

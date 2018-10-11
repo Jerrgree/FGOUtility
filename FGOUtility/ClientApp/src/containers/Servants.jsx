@@ -25,33 +25,23 @@ class Servants extends React.Component {
         }
     }
 
-    changeInv = (event) => {
-        const field = event.target.name;
+    addItemToGoal = (servantIndex) => (goalIndex) => (item, quantity) => {
+        const { servants } = this.state;
+        servants[servantIndex].goals[goalIndex].materials[item] = quantity;
+
+        this.setState({
+            servants: servants
+        });
+    }
+
+    changeInventory = (item, quantity) => {
         const { inventory } = this.state;
-        inventory[field] = parseInt(event.target.value);
-        this.setState({ inventory: inventory });
+        inventory[item] = quantity;
+        this.setState({
+            inventory: inventory
+        });
     }
 
-    addSv = (servant) => {
-        const { servants } = this.state;
-        servants.push(servant);
-        this.setState({ servants: servants });
-    }
-    removeSv = (index) => {
-        const { servants } = this.state;
-        servants.splice(index, 1);
-        this.setState({ servants: servants });
-    }
-    changeSv = (index) => (servant) => {
-        const { servants } = this.state;
-        servants[index] = servant;
-        this.setState({ servants: servants });
-    }
-
-
-    onBlur = (event) => {
-        this.props.save(this.state);
-    }
 
     render() {
         const materials = GetMaterials();
@@ -59,16 +49,20 @@ class Servants extends React.Component {
         //const items = materials.map(x => x.name).concat(classPieces.map(x => x.name));
         const options = materials.concat(classPieces);
 
-        const { servants, inventory } = this.props;
+        const { servants, inventory } = this.state;
+        console.log(inventory);
         return (
             <div>
-                {servants.length > 0 &&
+                {servants && servants.length > 0 &&
                     servants.map((servant, index) => {
                         return <Servant
                             key={index}
                             servant={servant}
                             inventory={inventory}
                             items={options}
+                            index={index}
+                            addItemToGoal={this.addItemToGoal}
+                            changeInventory={this.changeInventory}
                         />
                     })
                 }
