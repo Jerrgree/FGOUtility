@@ -26,7 +26,7 @@ function getSuggestionValue(suggestion) {
 
 function renderSuggestion(suggestion) {
     return (
-        <span>{suggestion.displayName}</span>
+        <span><img src={require(`../assets/${suggestion.name}.png`)} alt={suggestion.name} />{suggestion.displayName}</span>
     );
 }
 
