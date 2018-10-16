@@ -2,7 +2,7 @@
 import { actionCreators } from '../store';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
-import { GetMaterials, GetClassPieces } from '../assets/references';
+import { GetMaterials, GetClassPieces } from '../data/references';
 import { InventoryRow } from '../components';
 
 class Inventory extends React.Component {
@@ -50,13 +50,16 @@ class Inventory extends React.Component {
                             <InventoryRow
                                 inventory={inventory}
                                 items={materials}
-                                onChange={this.onChange} />
+                                onChange={this.onChange}
+                                onBlur={this.onBlur}
+                            />
                         </Col>
                         <Col xs="12" md="6">
                             <InventoryRow
                                 inventory={inventory}
                                 items={classPieces}
                                 onChange={this.onChange}
+                                onBlur={this.onBlur}
                             />
                         </Col>
                     </Row>}

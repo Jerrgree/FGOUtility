@@ -35,7 +35,7 @@ namespace FGOUtility.Controllers
         [HttpPost("[action]")]
         public async Task Save(Data data)
         {
-            var content = JsonConvert.SerializeObject(data);
+            var content = JsonConvert.SerializeObject(data, Formatting.Indented);
 
             await System.IO.File.WriteAllTextAsync(file, content);
         }

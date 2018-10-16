@@ -13,6 +13,12 @@ export class InventoryRow extends React.Component {
         }
     }
 
+    handleBlur = (event) => {
+        if (this.props.onBlur) {
+            this.props.onBlur(event);
+        }
+    }
+
     render() {
         const { inventory, items } = this.props;
         return (
@@ -35,7 +41,7 @@ export class InventoryRow extends React.Component {
                         return (
                             <tr key={item.name}>
                                 <td>
-                                    <img src={require(`../assets/${item.name}.png`)} alt={item.name}/>
+                                    <img src={require(`../assets/${item.name}.png`)} alt={item.name} />
                                 </td>
                                 <td>
                                     {item.displayName}
@@ -45,7 +51,7 @@ export class InventoryRow extends React.Component {
                                         name={item.name}
                                         value={quantity}
                                         onChange={this.handleChange}
-                                        onBlur={this.onBlur}
+                                        onBlur={this.handleBlur}
                                         type="number"
                                         style={{ width: 100 }}
                                     />
@@ -61,6 +67,7 @@ export class InventoryRow extends React.Component {
 
 InventoryRow.PropTypes = {
     onChange: PropTypes.func,
+    onBlur: PropTypes.func,
     inventory: PropTypes.object,
     items: PropTypes.array
 }
