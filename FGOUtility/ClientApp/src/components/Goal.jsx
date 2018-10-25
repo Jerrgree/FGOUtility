@@ -38,11 +38,17 @@ export class Goal extends React.Component {
         const { goal, inventory, items } = this.props;
         const { quantity, showModal } = this.state;
         const materials = Object.entries(goal.materials);
+
+        const isAchieved = !materials.some(material => material[1] > inventory[material[0]]);
+        const backgroundColor = isAchieved ? "lightgreen" : "indianred"; 
+
         return (
             <div>
-                <Table bordered striped hover>
+                <Table bordered hover>
                     <thead>
-                        <tr>
+                        <tr
+                            style={{ backgroundColor: backgroundColor }}
+                        >
                             <th>{goal.name}</th>
                             <th>Material</th>
                             <th>Needed</th>
@@ -53,8 +59,13 @@ export class Goal extends React.Component {
                         {materials.length > 0 && materials.map(mat => {
                             const item = mat[0];
                             const needed = mat[1];
+
+                            const isAchieved = needed <= inventory[item];
+                            const backgroundColor = isAchieved ? "lightgreen" : "indianred";
                             return (
-                                <tr key={mat[0]}>
+                                <tr key={mat[0]}
+                                    style={{ backgroundColor: backgroundColor }}
+                                >
                                     <td>
                                         <img src={require(`../assets/${item}.png`)} alt={item} />
                                     </td>

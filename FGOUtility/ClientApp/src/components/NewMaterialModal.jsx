@@ -84,6 +84,14 @@ export class NewMaterialModal extends React.Component {
         });
     };
 
+    canSaveItem = () => {
+        const { items } = this.props;
+        if (items && items.length > 0) {
+            return items.some(item => item.name === this.state.item);
+        }
+        return false;
+    }
+
     render() {
         const { showModal } = this.props;
         const { item, quantity, suggestions } = this.state;
@@ -142,6 +150,7 @@ export class NewMaterialModal extends React.Component {
                     <Button
                         color="success"
                         onClick={this.save}
+                        disabled={!this.canSaveItem()}
                     >
                         Save
                 </Button>
