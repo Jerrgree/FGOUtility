@@ -2,6 +2,7 @@
 import { Goal } from '../components';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardBody, CardFooter, Row, Col, Input, Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export class Servant extends React.Component {
 
@@ -41,6 +42,12 @@ export class Servant extends React.Component {
         this.setState({ goalName: "" });
     }
 
+    removeServant = () => {
+        if (this.props.removeServant) {
+            this.props.removeServant(this.props.index);
+        }
+    }
+
     canAddGoal = () => {
         const { servant: { goals } } = this.props;
         const { goalName } = this.state;
@@ -52,23 +59,38 @@ export class Servant extends React.Component {
         const { goalName } = this.state;
         const goals = servant.goals;
         return <Card>
-            <CardHeader>
-                {servant.name}
+            <CardHeader
+            >
+                <Row>
+                    <Col xs="8">
+                        {servant.name}
+                    </Col>
+                    <Col xs="4">
+                        <Button
+                            color="danger"
+                            onClick={this.removeServant}
+                            className="float-right"
+                        >
+                            <FontAwesomeIcon icon="minus" />
+                        </Button>
+                    </Col>
+                </Row>
             </CardHeader>
             <CardBody>
                 {goals.length > 0 &&
                     goals.map((goal, index) => {
-                        return (
-                            <Goal
-                                key={index}
-                                goal={goal}
-                                inventory={inventory}
-                                items={items}
-                                index={index}
-                                addItem={this.addItemToGoal}
-                                changeInventory={this.props.changeInventory}
-                                completeGoal={this.handleCompleteGoal}
-                            />
+                    return (
+                        <Row key={index}>
+                                <Goal
+                                    goal={goal}
+                                    inventory={inventory}
+                                    items={items}
+                                    index={index}
+                                    addItem={this.addItemToGoal}
+                                    changeInventory={this.props.changeInventory}
+                                    completeGoal={this.handleCompleteGoal}
+                                />
+                            </Row>
                         )
                     })
                 }
@@ -106,5 +128,6 @@ Servant.PropTypes = {
     addItemToGoal: PropTypes.func,
     changeInventory: PropTypes.func,
     addGoal: PropTypes.func,
-    completeGoal: PropTypes.func
+    completeGoal: PropTypes.func,
+    removeServant: PropTypes.func
 }

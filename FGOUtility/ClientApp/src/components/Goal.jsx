@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { Table, Button, Input } from 'reactstrap';
+import { Table, Button, Input, Row, Col } from 'reactstrap';
 import { NewMaterialModal } from '../components';
 
 export class Goal extends React.Component {
@@ -78,18 +78,25 @@ export class Goal extends React.Component {
                     </tbody>
                 </Table>
                 <div>
-                    <Button
-                        color="success"
-                        onClick={this.handleCompleteGoal}
-                    >
-                        Complete Goal
+                    <Row>
+                        <Col>
+                            <Button
+                                color="primary"
+                                onClick={this.toggleModal}
+                            >
+                                Add Material
+                            </Button>
+                        </Col>
+                        <Col xs="6">
+                            <Button
+                                color="success"
+                                onClick={this.handleCompleteGoal}
+                                className="float-right"
+                            >
+                                Complete Goal
                         </Button>
-                    <Button
-                        color="primary"
-                        onClick={this.toggleModal}
-                    >
-                        Add Material
-                    </Button>
+                        </Col>
+                    </Row>
                 </div>
                 <NewMaterialModal
                     items={items}

@@ -68,6 +68,18 @@ class Servants extends React.Component {
         this.props.save(this.state);
     }
 
+    removeServant = (servantIndex) => {
+        const { servants } = this.state;
+
+        servants.splice(servantIndex, 1);
+
+        this.setState({
+            servants: servants
+        });
+
+        this.props.save(this.state);
+    }
+
     completeGoal = (servantIndex) => (goalIndex) => {
         const { servants, inventory } = this.state;
         const goal = servants[servantIndex].goals[goalIndex];
@@ -132,6 +144,7 @@ class Servants extends React.Component {
                                         changeInventory={this.changeInventory}
                                         addGoalToServant={this.addGoalToServant}
                                         completeGoal={this.completeGoal}
+                                        removeServant={this.removeServant}
                                     />
                                 </Row>
                             })
