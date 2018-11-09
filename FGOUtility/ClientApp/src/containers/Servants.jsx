@@ -126,12 +126,11 @@ class Servants extends React.Component {
 
         const { servants, inventory, servantName } = this.state;
         return (
-            <div>
+            <div style={{ padding: 15 }}>
                 <Row>
                     {servants && servants.length > 0 &&
                         servants.map((servant, index) => {
-                            return <Col xs={12} md={6} key={index}>
-
+                        return <Col xs={12} md={6} key={index} style={{paddingTop: 10, paddingBottom:10}}>
                                 <Servant
                                     servant={servant}
                                     inventory={inventory}

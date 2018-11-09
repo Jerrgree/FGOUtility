@@ -121,7 +121,15 @@ export class NewMaterialModal extends React.Component {
                                         getSuggestionValue={getSuggestionValue}
                                         renderSuggestion={renderSuggestion}
                                         inputProps={inputProps}
-                                        />
+                                        theme={{
+                                            container: 'autosuggest',
+                                            input: 'form-control',
+                                            suggestionsContainer: 'dropdown',
+                                            suggestionsList: `dropdown-menu ${suggestions.length ? 'show' : ''}`,
+                                            suggestion: 'dropdown-item',
+                                            suggestionFocused: 'active'
+                                        }}
+                                    />
                                 </FormGroup>
                             </Col>
 

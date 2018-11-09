@@ -94,8 +94,8 @@ export class Servant extends React.Component {
                     <div>
                         <Nav tabs>
                             {goals.map((goal, index) => {
-                                return (
-                                    <NavItem>
+                            return (
+                                    <NavItem key={index}>
                                         <NavLink
                                             className={classnames({ active: this.state.activeTab === index.toString() })}
                                             onClick={() => { this.toggleTab(index.toString()) }}
@@ -120,7 +120,6 @@ export class Servant extends React.Component {
                                             completeGoal={this.handleCompleteGoal}
                                         />
                                     </TabPane>
-
                                 )
                             })}
                         </TabContent>
