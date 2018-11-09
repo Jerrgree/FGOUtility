@@ -40,7 +40,7 @@ export class Goal extends React.Component {
         const materials = Object.entries(goal.materials);
 
         const isAchieved = !materials.some(material => material[1] > inventory[material[0]]);
-        const backgroundColor = isAchieved ? "lightgreen" : "indianred"; 
+        const backgroundColor = isAchieved ? "green" : "red"; 
 
         return (
             <div>

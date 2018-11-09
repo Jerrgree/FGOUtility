@@ -128,28 +128,26 @@ class Servants extends React.Component {
         return (
             <div>
                 <Row>
-                    <Col xs={12} md={6}>
-                        {servants && servants.length > 0 &&
-                            servants.map((servant, index) => {
-                            return <Row
-                                style={{ padding: 10 }}
-                                key={index}
-                            >
-                                    <Servant
-                                        servant={servant}
-                                        inventory={inventory}
-                                        items={options}
-                                        index={index}
-                                        addItemToGoal={this.addItemToGoal}
-                                        changeInventory={this.changeInventory}
-                                        addGoalToServant={this.addGoalToServant}
-                                        completeGoal={this.completeGoal}
-                                        removeServant={this.removeServant}
-                                    />
-                                </Row>
-                            })
-                        }
-                    </Col>
+                    {servants && servants.length > 0 &&
+                        servants.map((servant, index) => {
+                            return <Col xs={12} md={6} key={index}>
+
+                                <Servant
+                                    servant={servant}
+                                    inventory={inventory}
+                                    items={options}
+                                    index={index}
+                                    addItemToGoal={this.addItemToGoal}
+                                    changeInventory={this.changeInventory}
+                                    addGoalToServant={this.addGoalToServant}
+                                    completeGoal={this.completeGoal}
+                                    removeServant={this.removeServant}
+                                />
+                            </Col>
+                        })
+                    }
+                </Row>
+                <Row>
                     <Col xs={12} md={6}>
                         <Row>
                             <Col xs={12} md={8}>
