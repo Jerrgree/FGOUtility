@@ -34,6 +34,15 @@ export class Goal extends React.Component {
         }
     }
 
+    canCompleteGoal = () => {
+        const { inventory, goal } = this.props;
+        const materials = Object.entries(goal.materials);
+        if (materials) {
+            return !materials.some(material => material[1] > inventory[material[0]]);
+        }
+        return false;
+    }
+
     render() {
         const { goal, inventory, items } = this.props;
         const { quantity, showModal } = this.state;
@@ -103,6 +112,7 @@ export class Goal extends React.Component {
                                 color="success"
                                 onClick={this.handleCompleteGoal}
                                 className="float-right"
+                                disabled={!this.canCompleteGoal()}
                             >
                                 Complete Goal
                         </Button>
