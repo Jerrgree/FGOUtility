@@ -159,6 +159,7 @@ export class NewMaterialModal extends React.Component {
                         color="success"
                         onClick={this.save}
                         disabled={!this.canSaveItem()}
+                        type="submit"
                     >
                         Save
                 </Button>

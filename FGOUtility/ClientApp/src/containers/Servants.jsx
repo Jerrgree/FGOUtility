@@ -193,4 +193,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Servants);;
+export default connect(mapStateToProps, mapDispatchToProps)(Servants);
