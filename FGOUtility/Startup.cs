@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace FGOUtility
 {
@@ -17,7 +18,6 @@ namespace FGOUtility
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -27,6 +27,17 @@ namespace FGOUtility
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services
+             .AddAuthentication(sharedOptions =>
+             {
+                 sharedOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+             })
+             .AddJwtBearer(options =>
+             {
+                 options.Audience = Configuration["AzureAd:ClientId"];
+                 options.Authority = $"{Configuration["AzureAd:Instance"]}{Configuration["AzureAd:TenantId"]}";
+             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +56,8 @@ namespace FGOUtility
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using FGOUtility.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FGOUtility.Controllers
 {
@@ -13,6 +14,7 @@ namespace FGOUtility.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DataController : ControllerBase
     {
         private const string file = "Data/data.json";
