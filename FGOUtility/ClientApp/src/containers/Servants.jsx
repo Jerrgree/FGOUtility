@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { actionCreators } from '../store';
 import { connect } from 'react-redux';
-import { Row, Col, Input, Button } from 'reactstrap';
+import { Row, Col, Input, Button, Form } from 'reactstrap';
 import { GetMaterials, GetClassPieces } from '../data/references';
 import { Servant } from '../components';
 
@@ -147,27 +147,30 @@ class Servants extends React.Component {
                     }
                 </Row>
                 <Row>
-                    <Col xs={12} md={6}>
-                        <Row>
-                            <Col xs={12} md={8}>
-                                <Input
-                                    name="servantName"
-                                    id="servantName"
-                                    value={servantName}
-                                    onChange={this.onChange}
-                                />
-                            </Col>
-                            <Col xs={12} md={4}>
-                                <Button
-                                    color="secondary"
-                                    disabled={!this.canAddServant()}
-                                    onClick={this.addServant}
-                                >
-                                    New Servant
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Col>
+                    <Form>
+                        <Col xs={12} md={6}>
+                            <Row>
+                                <Col xs={12} md={8}>
+                                    <Input
+                                        name="servantName"
+                                        id="servantName"
+                                        value={servantName}
+                                        onChange={this.onChange}
+                                    />
+                                </Col>
+                                <Col xs={12} md={4}>
+                                    <Button
+                                        color="secondary"
+                                        disabled={!this.canAddServant()}
+                                        onClick={this.addServant}
+                                        type="submit"
+                                    >
+                                        New Servant
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Form>
                 </Row>
             </div>
         )

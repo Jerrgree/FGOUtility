@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { Goal } from '../components';
 import PropTypes from 'prop-types';
-import { Card, CardHeader, CardBody, CardFooter, Row, Col, Input, Button, TabPane, Nav, TabContent, NavItem, NavLink } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardFooter, Row, Col, Input, Button, TabPane, Nav, TabContent, NavItem, NavLink, Form } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classnames from 'classnames';
 
@@ -127,24 +127,27 @@ export class Servant extends React.Component {
                 }
             </CardBody>
             <CardFooter>
-                <Row>
-                    <Col xs={12} md={8}>
-                        <Input
-                            value={goalName}
-                            onChange={this.onChange}
-                            name="goalName"
-                            id="goalName"
-                        />
-                    </Col>
-                    <Col xs={12} md={4}>
-                        <Button
-                            onClick={this.addGoal}
-                            disabled={!this.canAddGoal()}
-                        >
-                            New Goal
-                                </Button>
-                    </Col>
-                </Row>
+                <Form>
+                    <Row>
+                        <Col xs={12} md={8}>
+                            <Input
+                                value={goalName}
+                                onChange={this.onChange}
+                                name="goalName"
+                                id="goalName"
+                            />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Button
+                                onClick={this.addGoal}
+                                disabled={!this.canAddGoal()}
+                                type="submit"
+                            >
+                                New Goal
+                            </Button>
+                        </Col>
+                    </Row>
+                </Form>
             </CardFooter>
         </Card>
     }
