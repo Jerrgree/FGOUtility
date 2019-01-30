@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FGOUtility.Models
+namespace Common.Models
 {
     public class Data
     {
