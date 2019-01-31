@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FGOUtility", "FGOUtility\FGOUtility.csproj", "{51053F30-C455-49F9-8376-91BAD8574F3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONDataService", "JSONDataService\JSONDataService.csproj", "{74166E5C-A1E3-4E17-977E-344E06571A9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSONDataService", "JSONDataService\JSONDataService.csproj", "{74166E5C-A1E3-4E17-977E-344E06571A9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E0B1F33F-B5F3-4F38-89B4-84F211A86827}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{E0B1F33F-B5F3-4F38-89B4-84F211A86827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5528430E-148F-475D-8FC5-3355A4FC35AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{E0B1F33F-B5F3-4F38-89B4-84F211A86827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0B1F33F-B5F3-4F38-89B4-84F211A86827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0B1F33F-B5F3-4F38-89B4-84F211A86827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5528430E-148F-475D-8FC5-3355A4FC35AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5528430E-148F-475D-8FC5-3355A4FC35AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5528430E-148F-475D-8FC5-3355A4FC35AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5528430E-148F-475D-8FC5-3355A4FC35AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
