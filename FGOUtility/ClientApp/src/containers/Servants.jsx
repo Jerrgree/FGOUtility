@@ -57,7 +57,19 @@ class Servants extends React.Component {
 
         servants.push({
             name: servantName,
-            goals: []
+            goals: [{
+                name: 'Ascension 1',
+                materials: {}
+            }, {
+                name: 'Ascension 2',
+                materials: {}
+            }, {
+                name: 'Ascension 3',
+                materials: {}
+            }, {
+                name: 'Ascension 4',
+                materials: {}
+            }]
         });
 
         this.setState({
@@ -130,7 +142,7 @@ class Servants extends React.Component {
                 <Row>
                     {servants && servants.length > 0 &&
                         servants.map((servant, index) => {
-                        return <Col xs={12} md={6} key={index} style={{paddingTop: 10, paddingBottom:10}}>
+                            return <Col xs={12} md={6} key={index} style={{ paddingTop: 10, paddingBottom: 10 }}>
                                 <Servant
                                     servant={servant}
                                     inventory={inventory}
@@ -187,7 +199,6 @@ const mapDispatchToProps = dispatch => {
         }
     };
 }
-
 
 const mapStateToProps = (state) => {
     return {

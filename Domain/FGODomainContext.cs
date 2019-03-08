@@ -17,7 +17,7 @@ namespace Domain
             if (!optionsBuilder.IsConfigured)
             {
                 // TODO: Move connection to config
-                optionsBuilder.UseSqlServer(@"CONNECTION_STRING");
+                optionsBuilder.UseSqlServer(@"Server=localhost;Database=GrandOrder;Trusted_Connection=True;");
             }
         }
 

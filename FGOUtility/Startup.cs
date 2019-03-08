@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System;
 
 namespace FGOUtility
 {
@@ -20,6 +21,8 @@ namespace FGOUtility
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var x = Environment.GetEnvironmentVariable("AzureADClientID");
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the React files will be served from this directory
@@ -35,8 +38,8 @@ namespace FGOUtility
              })
              .AddJwtBearer(options =>
              {
-                 options.Audience = Configuration["AzureAd:ClientId"];
-                 options.Authority = $"{Configuration["AzureAd:Instance"]}{Configuration["AzureAd:TenantId"]}";
+                 options.Audience = Environment.GetEnvironmentVariable("AzureADClientID");
+                 options.Authority = $"{Configuration["AzureAd:Instance"]}{Environment.GetEnvironmentVariable("AzureADTenantID")}";
              });
         }
 
