@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { actionCreators } from '../store';
 import { connect } from 'react-redux';
-import { Row, Col, Input, Button } from 'reactstrap';
+import { Row, Col, Input, Button, Form } from 'reactstrap';
 import { GetMaterials, GetClassPieces } from '../data/references';
 import { Servant } from '../components';
 
@@ -57,7 +57,19 @@ class Servants extends React.Component {
 
         servants.push({
             name: servantName,
-            goals: []
+            goals: [{
+                name: 'Ascension 1',
+                materials: {}
+            }, {
+                name: 'Ascension 2',
+                materials: {}
+            }, {
+                name: 'Ascension 3',
+                materials: {}
+            }, {
+                name: 'Ascension 4',
+                materials: {}
+            }]
         });
 
         this.setState({
@@ -130,7 +142,7 @@ class Servants extends React.Component {
                 <Row>
                     {servants && servants.length > 0 &&
                         servants.map((servant, index) => {
-                        return <Col xs={12} md={6} key={index} style={{paddingTop: 10, paddingBottom:10}}>
+                            return <Col xs={12} md={6} key={index} style={{ paddingTop: 10, paddingBottom: 10 }}>
                                 <Servant
                                     servant={servant}
                                     inventory={inventory}
@@ -147,27 +159,30 @@ class Servants extends React.Component {
                     }
                 </Row>
                 <Row>
-                    <Col xs={12} md={6}>
-                        <Row>
-                            <Col xs={12} md={8}>
-                                <Input
-                                    name="servantName"
-                                    id="servantName"
-                                    value={servantName}
-                                    onChange={this.onChange}
-                                />
-                            </Col>
-                            <Col xs={12} md={4}>
-                                <Button
-                                    color="secondary"
-                                    disabled={!this.canAddServant()}
-                                    onClick={this.addServant}
-                                >
-                                    New Servant
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Col>
+                    <Form>
+                        <Col xs={12} md={6}>
+                            <Row>
+                                <Col xs={12} md={8}>
+                                    <Input
+                                        name="servantName"
+                                        id="servantName"
+                                        value={servantName}
+                                        onChange={this.onChange}
+                                    />
+                                </Col>
+                                <Col xs={12} md={4}>
+                                    <Button
+                                        color="secondary"
+                                        disabled={!this.canAddServant()}
+                                        onClick={this.addServant}
+                                        type="submit"
+                                    >
+                                        New Servant
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Form>
                 </Row>
             </div>
         )
@@ -185,7 +200,6 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-
 const mapStateToProps = (state) => {
     return {
         inventory: state.data.inventory,
@@ -193,4 +207,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Servants);;
+export default connect(mapStateToProps, mapDispatchToProps)(Servants);

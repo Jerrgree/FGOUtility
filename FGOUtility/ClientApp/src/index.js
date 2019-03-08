@@ -10,6 +10,8 @@ import { createBrowserHistory } from 'history';
 import configureStore from './store/configureStore';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { runWithAdal } from 'react-adal';
+import { authContext } from './utils/auth';
 
 // Create browser history to use in the Redux store
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
@@ -20,13 +22,15 @@ const initialState = window.initialReduxState;
 const store = configureStore(history, initialState);
 
 const rootElement = document.getElementById('root');
+runWithAdal(authContext, () => {
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
-  rootElement);
+    ReactDOM.render(
+        <Provider store={store}>
+            <ConnectedRouter history={history}>
+                <App />
+            </ConnectedRouter>
+        </Provider>,
+        rootElement);
 
-registerServiceWorker();
+    registerServiceWorker();
+});

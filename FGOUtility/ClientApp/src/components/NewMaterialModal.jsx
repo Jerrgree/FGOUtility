@@ -105,11 +105,12 @@ export class NewMaterialModal extends React.Component {
             <Modal
                 isOpen={showModal}
             >
-                <ModalHeader>
-                    Add Material
+                <Form>
+
+                    <ModalHeader>
+                        Add Material
             </ModalHeader>
-                <ModalBody>
-                    <Form>
+                    <ModalBody>
                         <Row>
                             <Col xs={12} md={8}>
                                 <FormGroup>
@@ -146,23 +147,24 @@ export class NewMaterialModal extends React.Component {
                                 </FormGroup>
                             </Col>
                         </Row>
-                    </Form>
-                </ModalBody>
-                <ModalFooter>
-                    <Button
-                        color="danger"
-                        onClick={this.cancel}
-                    >
-                        Cancel
-                </Button>
-                    <Button
-                        color="success"
-                        onClick={this.save}
-                        disabled={!this.canSaveItem()}
-                    >
-                        Save
-                </Button>
-                </ModalFooter>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button
+                            color="danger"
+                            onClick={this.cancel}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            color="success"
+                            onClick={this.save}
+                            disabled={!this.canSaveItem()}
+                            type="submit"
+                        >
+                            Save
+                        </Button>
+                    </ModalFooter>
+                </Form>
             </Modal>
         )
     }

@@ -1,4 +1,6 @@
-﻿const loadData = 'LOAD_DATA';
+﻿import { getToken } from '../utils/auth';
+
+const loadData = 'LOAD_DATA';
 const recieveData = 'RECEIVE_DATA';
 const saveData = 'SAVE_DATA';
 
@@ -18,7 +20,9 @@ export const actionCreators = {
 
         dispatch({ type: loadData });
         const url = 'api/Data/Load';
-        await fetch(url)
+        await fetch(url, {
+            headers: { 'Authorization': `Bearer ${getToken()}` }
+        })
             .then(response => response.json())
             .then(json => dispatch({ type: recieveData, data: json }));
         },
@@ -33,6 +37,7 @@ export const actionCreators = {
             method: 'post',
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
+                'Authorization': `Bearer ${getToken()}`
             },
             body: JSON.stringify(data)
         });
