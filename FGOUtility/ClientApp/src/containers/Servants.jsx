@@ -29,7 +29,14 @@ class Servants extends React.Component {
 
     addItemToGoal = (servantIndex) => (goalIndex) => (item, quantity) => {
         const { servants } = this.state;
-        servants[servantIndex].goals[goalIndex].materials[item] = quantity;
+
+        if (quantity > 0) {
+            servants[servantIndex].goals[goalIndex].materials[item] = quantity;
+        }
+        // If the item already exists, remove it
+        else if (servants[servantIndex].goals[goalIndex].materials[item] !== undefined) {
+            delete servants[servantIndex].goals[goalIndex].materials[item]
+        }
 
         this.setState({
             servants: servants
@@ -111,7 +118,7 @@ class Servants extends React.Component {
     }
 
     changeInventory = (item, quantity) => {
-        const { inventory } = this.state;
+        let inventory = Object.assign({}, this.state.inventory);
         inventory[item] = quantity;
         this.setState({
             inventory: inventory

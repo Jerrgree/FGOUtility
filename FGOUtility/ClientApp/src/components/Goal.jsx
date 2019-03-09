@@ -43,14 +43,29 @@ export class Goal extends React.Component {
         return false;
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        const { goal, inventory } = this.props;
+        const materials = Object.entries(goal.materials);
+
+        if (nextState.showModal !== this.state.showModal) {
+            return true;
+        }
+
+        return materials.reduce((acc, mat) => {
+            const item = mat[0];
+            return acc || (inventory[item] != nextProps.inventory[item]);
+        }, false);
+
+        return false;
+    }
+
     render() {
         const { goal, inventory, items } = this.props;
         const { quantity, showModal } = this.state;
         const materials = Object.entries(goal.materials);
-
+        console.log("HI");
         const isAchieved = !materials.some(material => material[1] > inventory[material[0]]);
         const backgroundColor = isAchieved ? "green" : "red";
-
         return (
             <div>
                 <Table bordered hover>

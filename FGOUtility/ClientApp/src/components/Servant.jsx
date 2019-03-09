@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classnames from 'classnames';
 
 export class Servant extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -17,7 +16,6 @@ export class Servant extends React.Component {
     }
 
     handleBlur = (event) => {
-
     }
 
     onChange = (event) => {
@@ -94,7 +92,7 @@ export class Servant extends React.Component {
                     <div>
                         <Nav tabs>
                             {goals.map((goal, index) => {
-                            return (
+                                return (
                                     <NavItem key={index}>
                                         <NavLink
                                             className={classnames({ active: this.state.activeTab === index.toString() })}

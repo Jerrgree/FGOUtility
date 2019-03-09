@@ -25,7 +25,7 @@ export const actionCreators = {
         })
             .then(response => response.json())
             .then(json => dispatch({ type: recieveData, data: json }));
-        },
+    },
     save: (data) => async (dispatch, getState) => {
         const state = getState();
         //if (!state.isDirty) {

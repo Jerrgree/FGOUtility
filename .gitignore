@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 FGOUtility/Data/data.json
 /Domain/Migrations
+/FGOUtility/ClientApp/src/utils/auth.jsx
