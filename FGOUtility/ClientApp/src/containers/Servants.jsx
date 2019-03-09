@@ -106,7 +106,7 @@ class Servants extends React.Component {
     completeGoal = (servantIndex) => (goalIndex) => {
         //const { servants, inventory } = this.state;
         let servants = Object.assign({}, this.state.servants);
-        let inventory = Object.assign({], this.state.inventory });
+        let inventory = Object.assign({}, this.state.inventory);
         const goal = servants[servantIndex].goals[goalIndex];
         const materials = Object.entries(goal.materials);
 
