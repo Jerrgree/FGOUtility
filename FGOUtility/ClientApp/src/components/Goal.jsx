@@ -38,7 +38,7 @@ export class Goal extends React.Component {
         const { inventory, goal } = this.props;
         const materials = Object.entries(goal.materials);
         if (materials) {
-            return !materials.some(material => material[1] > inventory[material[0]]);
+            return !materials.some(material => Number(material[1]) > Number(inventory[material[0]]));
         }
         return false;
     }
@@ -50,10 +50,9 @@ export class Goal extends React.Component {
         if (nextState.showModal !== this.state.showModal) {
             return true;
         }
-
         return materials.reduce((acc, mat) => {
             const item = mat[0];
-            return acc || (inventory[item] != nextProps.inventory[item]);
+            return acc || (Number(inventory[item]) != Number(nextProps.inventory[item]));
         }, false);
 
         return false;
@@ -63,8 +62,7 @@ export class Goal extends React.Component {
         const { goal, inventory, items } = this.props;
         const { quantity, showModal } = this.state;
         const materials = Object.entries(goal.materials);
-        console.log("HI");
-        const isAchieved = !materials.some(material => material[1] > inventory[material[0]]);
+        const isAchieved = !materials.some(material => Number(material[1]) > Number(inventory[material[0]]));
         const backgroundColor = isAchieved ? "green" : "red";
         return (
             <div>
@@ -84,7 +82,7 @@ export class Goal extends React.Component {
                             const item = mat[0];
                             const needed = mat[1];
 
-                            const isAchieved = needed <= inventory[item];
+                            const isAchieved = Number(needed) <= Number(inventory[item]);
                             const backgroundColor = isAchieved ? "lightgreen" : "indianred";
                             return (
                                 <tr key={mat[0]}

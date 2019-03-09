@@ -42,7 +42,10 @@ class Servants extends React.Component {
             servants: servants
         });
 
-        this.props.save(this.state);
+        this.props.save({
+            inventory: this.state.inventory,
+            servants: servants
+        });
     }
 
     addGoalToServant = (servantIndex) => (goalName) => {
@@ -57,7 +60,10 @@ class Servants extends React.Component {
             servants: servants
         });
 
-        this.props.save(this.state);
+        this.props.save({
+            inventory: this.state.inventory,
+            servants: servants
+        });
     }
 
     addServant = () => {
@@ -87,7 +93,10 @@ class Servants extends React.Component {
             servantName: ""
         });
 
-        this.props.save(this.state);
+        this.props.save({
+            inventory: this.state.inventory,
+            servants: servants
+        });
     }
 
     removeServant = (servantIndex) => {
@@ -100,7 +109,10 @@ class Servants extends React.Component {
             servants: servants
         });
 
-        this.props.save(this.state);
+        this.props.save({
+            inventory: this.state.inventory,
+            servants: servants
+        });
     }
 
     completeGoal = (servantIndex) => (goalIndex) => {
@@ -120,7 +132,10 @@ class Servants extends React.Component {
             servants: servants,
             inventory: inventory
         });
-        this.props.save(this.state);
+        this.props.save({
+            inventory: inventory,
+            servants: servants
+        });
     }
 
     changeInventory = (item, quantity) => {
@@ -130,7 +145,10 @@ class Servants extends React.Component {
             inventory: inventory
         });
 
-        this.props.save(this.state);
+        this.props.save({
+            inventory: inventory,
+            servants: this.state.servants
+        });
     }
 
     onChange = (event) => {
