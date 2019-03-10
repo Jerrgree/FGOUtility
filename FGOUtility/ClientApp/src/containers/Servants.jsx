@@ -28,7 +28,8 @@ class Servants extends React.Component {
     }
 
     addItemToGoal = (servantIndex) => (goalIndex) => (item, quantity) => {
-        const { servants } = this.state;
+        //const { servants } = this.state;
+        let servants = Array.from(this.state.servants);
 
         if (quantity > 0) {
             servants[servantIndex].goals[goalIndex].materials[item] = quantity;
@@ -50,7 +51,7 @@ class Servants extends React.Component {
 
     addGoalToServant = (servantIndex) => (goalName) => {
         //const { servants } = this.state;
-        let servants = Object.assign({}, this.state.servants);
+        let servants = Array.from(this.state.servants);
         servants[servantIndex].goals.push({
             name: goalName,
             materials: {}
@@ -69,7 +70,7 @@ class Servants extends React.Component {
     addServant = () => {
         //const { servants, servantName } = this.state;
         const { servantName } = this.state;
-        let servants = Object.assign({}, this.state.servants);
+        let servants = Array.from(this.state.servants);
 
         servants.push({
             name: servantName,
@@ -101,7 +102,7 @@ class Servants extends React.Component {
 
     removeServant = (servantIndex) => {
         //const { servants } = this.state;
-        let servants = Object.assign({}, this.state.servants);
+        let servants = Array.from(this.state.servants);
 
         servants.splice(servantIndex, 1);
 
@@ -116,13 +117,14 @@ class Servants extends React.Component {
     }
 
     completeGoal = (servantIndex) => (goalIndex) => {
-        //const { servants, inventory } = this.state;
-        let servants = Object.assign({}, this.state.servants);
+        let servants = Array.from(this.state.servants);
         let inventory = Object.assign({}, this.state.inventory);
         const goal = servants[servantIndex].goals[goalIndex];
         const materials = Object.entries(goal.materials);
 
         servants[servantIndex].goals.splice(goalIndex, 1);
+
+        //console.log(servants);
 
         materials.forEach(material => {
             inventory[material[0]] -= material[1];
